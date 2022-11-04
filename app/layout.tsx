@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="h-screen bg-brand-base">
-        <header className="sticky top-0 z-50">
+        <header className="sticky top-0 z-50 border-b-2 border-primary-400">
           <Header />
         </header>
         {isMenuOpened && (

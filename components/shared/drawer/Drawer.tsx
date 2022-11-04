@@ -1,6 +1,7 @@
 import { ArrowUturnRightIcon, BookOpenIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { ComponentProps } from "react";
+import { useHeaderMenuStore } from "../store";
 
 interface DrawerLink {
   title: string;
@@ -27,20 +28,25 @@ const DrawerLinksList = ({ drawerLinks }: DrawerLinksListProps) => {
   );
 };
 
+const drawerLinks: DrawerLink[] = [
+  {
+    title: "Tutoriales",
+    path: "/tutorials",
+    Icon: BookOpenIcon,
+  },
+];
+
 export const Drawer = () => {
-  const drawerLinks: DrawerLink[] = [
-    {
-      title: "Tutorials",
-      path: "/tutorials",
-      Icon: BookOpenIcon,
-    },
-  ];
+  const toggleDrawer = useHeaderMenuStore((state) => state.toggleDrawer);
 
   return (
-    <div className="fixed z-40 h-screen w-2/5 overflow-y-auto bg-brand-primary p-4">
-      <div className="overflow-y-auto py-4 text-4xl text-brand-base">
-        <DrawerLinksList drawerLinks={drawerLinks} />
+    <>
+      <div className="fixed z-40 h-screen w-2/5 overflow-y-auto bg-brand-primary py-4 px-10 shadow-md shadow-brand-primary lg:w-1/3 xl:w-1/4">
+        <div className="overflow-y-auto py-4 text-4xl text-brand-base">
+          <DrawerLinksList drawerLinks={drawerLinks} />
+        </div>
       </div>
-    </div>
+      <div className="fixed z-30 h-full w-full bg-gray-500/20" onClick={toggleDrawer}></div>
+    </>
   );
 };

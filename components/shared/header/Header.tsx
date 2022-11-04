@@ -1,8 +1,6 @@
 import { Logo } from "./logo/Logo";
 import { Avatar } from "./avatar/Avatar";
 import { Menu } from "./menu/Menu";
-import { Drawer } from "../drawer/Drawer";
-import { useHeaderMenuStore } from "../store";
 
 export const Header = () => {
   return (
