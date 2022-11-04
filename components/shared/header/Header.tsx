@@ -6,7 +6,7 @@ import { useHeaderMenuStore } from "../store";
 
 export const Header = () => {
   return (
-    <div className="flex h-52 w-full items-center justify-between bg-brand-primary px-10 text-brand-base lg:h-32 xl:h-20 xl:px-6">
+    <div className="flex h-52 w-full items-center justify-between bg-brand-primary px-10 text-brand-base md:h-32 xl:h-20 xl:px-6">
       <div className="flex items-center justify-start gap-x-6">
         <Menu />
         <Logo />
