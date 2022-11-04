@@ -1,11 +1,9 @@
 "use client";
 
-import { Drawer, Header, useHeaderMenuStore } from "@components/shared";
+import { Navbar, Header, useHeaderMenuStore } from "@components/shared";
 import "./globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const isMenuOpened = useHeaderMenuStore((state) => state.isMenuOpened);
-
   return (
     <html lang="es">
       <head>
@@ -17,11 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-50 border-b-2 border-primary-400">
           <Header />
         </header>
-        {isMenuOpened && (
-          <nav>
-            <Drawer />
-          </nav>
-        )}
+        <Navbar />
         <main className="relative h-full">{children}</main>
       </body>
     </html>

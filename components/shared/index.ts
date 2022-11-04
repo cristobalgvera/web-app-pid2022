@@ -1,3 +1,3 @@
 export * from "./header/Header";
-export * from "./drawer/Drawer";
+export * from "./navbar/Navbar";
 export * from "./store";
