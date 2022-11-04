@@ -10,6 +10,7 @@ module.exports = {
           warn: "#E77728",
           error: "#DC3D84",
           base: "#F5F5F5",
+          text: "#303030",
         },
         // Current theme can be modified using https://tailwind.simeongriggs.dev/?error=E15A97&base=F4F4F4&warn=E77728&secondary=678D58&primary=355691
         primary: {
