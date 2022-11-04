@@ -1,7 +1,10 @@
 "use client";
 
 import { Navbar, Header, useHeaderMenuStore } from "@components/shared";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./globals.css";
+
+const queryClient = new QueryClient();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,13 +20,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="/favicon.ico"
         />
       </head>
-      <body className="h-screen bg-brand-base">
-        <header className="sticky top-0 z-50 border-b-2 border-primary-400">
-          <Header />
-        </header>
-        <Navbar />
-        <main className="relative h-full">{children}</main>
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <body className="h-screen bg-brand-base">
+          <header className="sticky top-0 z-50 border-b-2 border-primary-400">
+            <Header />
+          </header>
+          <Navbar />
+          <main className="relative h-full">{children}</main>
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }

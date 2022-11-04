@@ -1,5 +1,7 @@
 import { Card } from "@components/shared";
+import { TutorialCard } from "@components/tutorials";
 import { TutorialsGrid } from "@components/tutorials/tutorials-grid/TutorialsGrid";
+import { useQuery } from "@tanstack/react-query";
 
 async function getCoverUrl(): Promise<string> {
   const response = await fetch("https://dog.ceo/api/breeds/image/random", { cache: "no-store" });
@@ -24,15 +26,8 @@ export default async function TutorialsPage() {
 
   return (
     <div className="flex h-full flex-col gap-y-8 p-8">
-      <h1 class="text-center text-6xl font-bold">Tutoriales</h1>
-      {/* <Card */}
-      {/*   redirectTo="tutorials/1" */}
-      {/*   title="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." */}
-      {/*   description="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." */}
-      {/*   cover={{ src: coverUrl, alt: "A picture of a dog" }} */}
-      {/*   tags={["This", "That", "There", "A long category name", "Something else"]} */}
-      {/* /> */}
-      <TutorialsGrid tutorials={new Array(10).fill(tutorial)} />
+      <h1 className="text-center text-6xl font-bold">Tutoriales</h1>
+      <TutorialsGrid />
     </div>
   );
 }
