@@ -23,7 +23,6 @@
     "paths": {
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
-      "@app-types/*": ["types/*"],
       "@graphql/*": ["graphql/*"]
     }
   },
