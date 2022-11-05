@@ -2,7 +2,7 @@ export interface Tutorial {
   id: string;
   title: string;
   content: string;
-  summary: string;
+  summary?: string;
   cover?: {
     src: string;
     alt: string;
