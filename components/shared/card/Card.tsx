@@ -6,7 +6,7 @@ import { Tag } from "../tag/Tag";
 interface CardProps {
   redirectTo: string;
   title: string;
-  description: string;
+  description?: string;
   cover?: {
     src: string;
     alt: string;
@@ -31,12 +31,13 @@ export const Card = ({ redirectTo, title, description, cover, tags }: CardProps)
               src={cover.src}
               alt={cover.alt}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             />
           </div>
         )}
         <div className="flex flex-col gap-y-3 p-5">
           <h5 className="text-2xl font-bold tracking-tight text-slate-900 line-clamp-2">{title}</h5>
-          <p className="font-normal text-slate-500 line-clamp-3">{description}</p>
+          {description && <p className="font-normal text-slate-500 line-clamp-3">{description}</p>}
           <div className="grid grid-cols-3 gap-y-1 gap-x-2">
             {tags.map((tag) => (
               <Tag

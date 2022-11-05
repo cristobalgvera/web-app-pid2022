@@ -20,11 +20,13 @@ export const useTutorials = (): ApiResponse<ReadonlyArray<TutorialCard>> => {
         id: tutorial.id ?? "",
         title: tutorial.attributes?.title ?? "",
         cover: {
-          src: "",
-          alt: "",
+          src: process.env.NEXT_PUBLIC_CMS_BASE_URL! + (tutorial.attributes?.cover?.data?.attributes?.url ?? ""),
+          alt: tutorial.attributes?.cover?.data?.attributes?.alternativeText ?? "",
         },
-        categories: [],
-        summary: "",
+        categories:
+          tutorial.attributes?.categories?.data.map((category) => category.attributes?.name ?? "").filter(Boolean) ??
+          [],
+        summary: tutorial.attributes?.summary ?? "",
       })) ?? [],
     isLoading,
     isError,
