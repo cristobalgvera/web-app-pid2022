@@ -1,5 +1,5 @@
 import { TutorialCard } from "@components/tutorials";
-import { getAllTutorials } from "@graphql/queries";
+import { getAllTutorials } from "@graphql/actions";
 import { request } from "@graphql/util";
 import { useQuery } from "@tanstack/react-query";
 import { ApiResponse } from "./util";
