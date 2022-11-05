@@ -22,7 +22,8 @@
     "rootDir": ".",
     "paths": {
       "@components/*": ["components/*"],
-      "@app-types/*": ["types/*"]
+      "@app-types/*": ["types/*"],
+      "@generated/*": ["generated/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
