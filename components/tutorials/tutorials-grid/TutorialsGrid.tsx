@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "@components/shared";
 import { TutorialCard } from "../model";
 

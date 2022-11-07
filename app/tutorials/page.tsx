@@ -1,5 +1,4 @@
-import { TutorialCard } from "@components/tutorials";
-import { TutorialsGrid } from "@components/tutorials/tutorials-grid/TutorialsGrid";
+import { TutorialCard, TutorialsGrid } from "@components/tutorials";
 import { requestSdk } from "@graphql/util";
 
 async function getTutorialCards(): Promise<TutorialCard[]> {
