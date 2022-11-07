@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header />
           </header>
           <Navbar />
-          <main className="relative h-full">{children}</main>
+          <main className="relative">{children}</main>
         </body>
       </QueryClientProvider>
     </html>
