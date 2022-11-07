@@ -1,4 +1,4 @@
-export interface Tutorial {
+export interface TutorialModel {
   id: string;
   title: string;
   content: string;
@@ -10,4 +10,4 @@ export interface Tutorial {
   categories: string[];
 }
 
-export interface TutorialCard extends Omit<Tutorial, "content"> {}
+export interface TutorialCard extends Omit<TutorialModel, "content"> {}
