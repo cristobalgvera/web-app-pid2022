@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, Header, useHeaderMenuStore } from "@components/shared";
+import { Header, Navbar } from "@components/shared";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./globals.css";
 
