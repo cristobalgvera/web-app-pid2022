@@ -1,6 +1,3 @@
-import { graphql } from "@graphql/generated";
-
-export const TutorialFull = graphql(`
 fragment TutorialFull on Tutorial {
   title
   content
@@ -8,18 +5,14 @@ fragment TutorialFull on Tutorial {
   ...TutorialCover
   ...TutorialCategories
 }
-`);
 
-export const TutorialCard = graphql(`
 fragment TutorialCard on Tutorial {
   title
   summary
   ...TutorialCover
   ...TutorialCategories
 }
-`);
 
-export const TutorialCategories = graphql(`
 fragment TutorialCategories on Tutorial {
   categories {
     data {
@@ -29,9 +22,7 @@ fragment TutorialCategories on Tutorial {
     }
   }
 }
-`);
 
-export const TutorialCover = graphql(`
 fragment TutorialCover on Tutorial {
   cover {
     data {
@@ -42,4 +33,3 @@ fragment TutorialCover on Tutorial {
     }
   }
 }
-`)

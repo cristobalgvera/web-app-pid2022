@@ -1,7 +1,4 @@
-import { graphql } from "@graphql/generated";
-
-export const getAllTutorials = graphql(`
-query GetAllTutorials($pagination: PaginationArg) {
+query getAllTutorials($pagination: PaginationArg) {
   tutorials(pagination: $pagination) {
     data {
       id
@@ -11,10 +8,8 @@ query GetAllTutorials($pagination: PaginationArg) {
     }
   }
 }
-`);
 
-export const getOneTutorial = graphql(`
-query GetOneTutorial($id: ID!) {
+query getOneTutorial($id: ID!) {
   tutorial(id: $id) {
     data {
       id
@@ -24,4 +19,3 @@ query GetOneTutorial($id: ID!) {
     }
   }
 }
-`);

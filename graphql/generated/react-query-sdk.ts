@@ -1,10 +1,15 @@
-/* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import { GraphQLClient } from 'graphql-request';
+import { RequestInit } from 'graphql-request/dist/types.dom';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+
+function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
+  return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
+}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -12,11 +17,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
-  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
 
@@ -1058,43 +1060,119 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type TutorialFullFragment = (
-  { __typename?: 'Tutorial', title: string, content: string, summary?: string | null }
-  & { ' $fragmentRefs'?: { 'TutorialCoverFragment': TutorialCoverFragment;'TutorialCategoriesFragment': TutorialCategoriesFragment } }
-) & { ' $fragmentName'?: 'TutorialFullFragment' };
+export type TutorialFullFragment = { __typename?: 'Tutorial', title: string, content: string, summary?: string | null, cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null };
 
-export type TutorialCardFragment = (
-  { __typename?: 'Tutorial', title: string, summary?: string | null }
-  & { ' $fragmentRefs'?: { 'TutorialCoverFragment': TutorialCoverFragment;'TutorialCategoriesFragment': TutorialCategoriesFragment } }
-) & { ' $fragmentName'?: 'TutorialCardFragment' };
+export type TutorialCardFragment = { __typename?: 'Tutorial', title: string, summary?: string | null, cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null };
 
-export type TutorialCategoriesFragment = { __typename?: 'Tutorial', categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null } & { ' $fragmentName'?: 'TutorialCategoriesFragment' };
+export type TutorialCategoriesFragment = { __typename?: 'Tutorial', categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null };
 
-export type TutorialCoverFragment = { __typename?: 'Tutorial', cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } & { ' $fragmentName'?: 'TutorialCoverFragment' };
+export type TutorialCoverFragment = { __typename?: 'Tutorial', cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null };
 
 export type GetAllTutorialsQueryVariables = Exact<{
   pagination?: InputMaybe<PaginationArg>;
 }>;
 
 
-export type GetAllTutorialsQuery = { __typename?: 'Query', tutorials?: { __typename?: 'TutorialEntityResponseCollection', data: Array<{ __typename?: 'TutorialEntity', id?: string | null, attributes?: (
-        { __typename?: 'Tutorial' }
-        & { ' $fragmentRefs'?: { 'TutorialCardFragment': TutorialCardFragment } }
-      ) | null }> } | null };
+export type GetAllTutorialsQuery = { __typename?: 'Query', tutorials?: { __typename?: 'TutorialEntityResponseCollection', data: Array<{ __typename?: 'TutorialEntity', id?: string | null, attributes?: { __typename?: 'Tutorial', title: string, summary?: string | null, cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null } | null }> } | null };
 
 export type GetOneTutorialQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type GetOneTutorialQuery = { __typename?: 'Query', tutorial?: { __typename?: 'TutorialEntityResponse', data?: { __typename?: 'TutorialEntity', id?: string | null, attributes?: (
-        { __typename?: 'Tutorial' }
-        & { ' $fragmentRefs'?: { 'TutorialFullFragment': TutorialFullFragment } }
-      ) | null } | null } | null };
+export type GetOneTutorialQuery = { __typename?: 'Query', tutorial?: { __typename?: 'TutorialEntityResponse', data?: { __typename?: 'TutorialEntity', id?: string | null, attributes?: { __typename?: 'Tutorial', title: string, content: string, summary?: string | null, cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null } | null } | null } | null };
 
-export const TutorialCoverFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCover"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TutorialCoverFragment, unknown>;
-export const TutorialCategoriesFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCategories"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TutorialCategoriesFragment, unknown>;
-export const TutorialFullFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCover"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCategories"}}]}},...TutorialCoverFragmentDoc.definitions,...TutorialCategoriesFragmentDoc.definitions]} as unknown as DocumentNode<TutorialFullFragment, unknown>;
-export const TutorialCardFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCard"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCover"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCategories"}}]}},...TutorialCoverFragmentDoc.definitions,...TutorialCategoriesFragmentDoc.definitions]} as unknown as DocumentNode<TutorialCardFragment, unknown>;
-export const GetAllTutorialsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllTutorials"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArg"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorials"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCard"}}]}}]}}]}}]}},...TutorialCardFragmentDoc.definitions]} as unknown as DocumentNode<GetAllTutorialsQuery, GetAllTutorialsQueryVariables>;
-export const GetOneTutorialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getOneTutorial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorial"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialFull"}}]}}]}}]}}]}},...TutorialFullFragmentDoc.definitions]} as unknown as DocumentNode<GetOneTutorialQuery, GetOneTutorialQueryVariables>;
+export const TutorialCoverFragmentDoc = `
+    fragment TutorialCover on Tutorial {
+  cover {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+}
+    `;
+export const TutorialCategoriesFragmentDoc = `
+    fragment TutorialCategories on Tutorial {
+  categories {
+    data {
+      attributes {
+        name
+      }
+    }
+  }
+}
+    `;
+export const TutorialFullFragmentDoc = `
+    fragment TutorialFull on Tutorial {
+  title
+  content
+  summary
+  ...TutorialCover
+  ...TutorialCategories
+}
+    ${TutorialCoverFragmentDoc}
+${TutorialCategoriesFragmentDoc}`;
+export const TutorialCardFragmentDoc = `
+    fragment TutorialCard on Tutorial {
+  title
+  summary
+  ...TutorialCover
+  ...TutorialCategories
+}
+    ${TutorialCoverFragmentDoc}
+${TutorialCategoriesFragmentDoc}`;
+export const GetAllTutorialsDocument = `
+    query getAllTutorials($pagination: PaginationArg) {
+  tutorials(pagination: $pagination) {
+    data {
+      id
+      attributes {
+        ...TutorialCard
+      }
+    }
+  }
+}
+    ${TutorialCardFragmentDoc}`;
+export const useGetAllTutorialsQuery = <
+      TData = GetAllTutorialsQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables?: GetAllTutorialsQueryVariables,
+      options?: UseQueryOptions<GetAllTutorialsQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GetAllTutorialsQuery, TError, TData>(
+      variables === undefined ? ['getAllTutorials'] : ['getAllTutorials', variables],
+      fetcher<GetAllTutorialsQuery, GetAllTutorialsQueryVariables>(client, GetAllTutorialsDocument, variables, headers),
+      options
+    );
+export const GetOneTutorialDocument = `
+    query getOneTutorial($id: ID!) {
+  tutorial(id: $id) {
+    data {
+      id
+      attributes {
+        ...TutorialFull
+      }
+    }
+  }
+}
+    ${TutorialFullFragmentDoc}`;
+export const useGetOneTutorialQuery = <
+      TData = GetOneTutorialQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: GetOneTutorialQueryVariables,
+      options?: UseQueryOptions<GetOneTutorialQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GetOneTutorialQuery, TError, TData>(
+      ['getOneTutorial', variables],
+      fetcher<GetOneTutorialQuery, GetOneTutorialQueryVariables>(client, GetOneTutorialDocument, variables, headers),
+      options
+    );

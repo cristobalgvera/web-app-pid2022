@@ -1,10 +1,5 @@
-import { request as graphqlRequest, Variables } from "graphql-request";
-import { RequestDocument } from "graphql-request/dist/types";
-import { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { getSdk } from "@graphql/generated/graphql-request-sdk";
+import { GraphQLClient } from "graphql-request";
 
-export function request<TDocument = unknown>(
-  requestDocument: RequestDocument | TypedDocumentNode<TDocument, Variables>,
-  variables?: Variables,
-): Promise<TDocument> {
-  return graphqlRequest<TDocument, Variables>(process.env.NEXT_PUBLIC_CMS_GRAPHQL_URL!, requestDocument, variables, {});
-}
+export const graphqlRequestClient = new GraphQLClient(process.env.NEXT_PUBLIC_CMS_GRAPHQL_URL!);
+export const requestSdk = getSdk(graphqlRequestClient);
