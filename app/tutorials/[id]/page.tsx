@@ -1,5 +1,6 @@
 import { Tutorial, TutorialModel } from "@components/tutorials";
 import { requestSdk } from "@graphql/util";
+import { NextPageProps } from "@utils/types";
 import { notFound } from "next/navigation";
 
 async function getTutorial(id: string): Promise<TutorialModel> {
@@ -23,7 +24,7 @@ async function getTutorial(id: string): Promise<TutorialModel> {
   };
 }
 
-export default async function TutorialPage({ params }: { params: { id: string } }) {
+export default async function TutorialPage({ params }: NextPageProps<{ id: string }>) {
   const tutorial = await getTutorial(params.id);
 
   return <Tutorial tutorial={tutorial} />;

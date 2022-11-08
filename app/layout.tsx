@@ -2,11 +2,12 @@
 
 import { Header, Navbar } from "@components/shared";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NextLayoutProps } from "@utils/types";
 import "./globals.css";
 
 const queryClient = new QueryClient();
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: NextLayoutProps) {
   return (
     <html lang="es">
       <head>
