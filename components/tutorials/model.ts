@@ -1,7 +1,9 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
 export interface TutorialModel {
   id: string;
   title: string;
-  content: string;
+  content: MDXRemoteSerializeResult;
   summary?: string;
   cover?: {
     src: string;

@@ -1,3 +1,4 @@
+import { MDXRemote } from "@app/client-wrappers";
 import { TutorialModel } from "../model";
 
 interface TutorialProps {
@@ -6,8 +7,9 @@ interface TutorialProps {
 
 export const Tutorial = ({ tutorial }: TutorialProps) => {
   return (
-    <div>
-      id: {tutorial.id}, title: {tutorial.title}
+    <div className="prose">
+      <h1>{tutorial.title}</h1>
+      <MDXRemote {...tutorial.content} />
     </div>
   );
 };
