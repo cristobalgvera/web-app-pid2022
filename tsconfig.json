@@ -22,6 +22,7 @@
     "rootDir": ".",
     "paths": {
       "@components/*": ["./app/components/*"],
+      "@lib/*": ["./lib/*"],
       "@hooks/*": ["./hooks/*"],
       "@utils/*": ["./utils/*"],
       "@graphql/*": ["./graphql/*"],
