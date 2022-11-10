@@ -1,10 +1,11 @@
 import { TutorialCard, TutorialModel } from "@components/tutorials";
+import { GetAllTutorialsQueryVariables, GetOneTutorialQueryVariables } from "@graphql/generated/graphql";
 import { requestSdk } from "@graphql/util";
 import { serialize } from "next-mdx-remote/serialize";
 import { notFound } from "next/navigation";
 
-async function getTutorial(id: string): Promise<TutorialModel> {
-  const response = await requestSdk.getOneTutorial({ id });
+async function getTutorial(variables: GetOneTutorialQueryVariables): Promise<TutorialModel> {
+  const response = await requestSdk.getOneTutorial(variables);
 
   if (!response.tutorial?.data?.id) notFound();
 
@@ -26,8 +27,8 @@ async function getTutorial(id: string): Promise<TutorialModel> {
   };
 }
 
-async function getTutorialCards(): Promise<TutorialCard[]> {
-  const response = await requestSdk.getAllTutorials();
+async function getTutorialCards(variables?: GetAllTutorialsQueryVariables): Promise<TutorialCard[]> {
+  const response = await requestSdk.getAllTutorials(variables);
 
   return (
     response?.tutorials?.data.map((tutorial) => ({
