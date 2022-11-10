@@ -1,4 +1,4 @@
-import { TutorialModel } from "@components/tutorials";
+import { TutorialCard, TutorialModel } from "@components/tutorials";
 import { requestSdk } from "@graphql/util";
 import { serialize } from "next-mdx-remote/serialize";
 import { notFound } from "next/navigation";
@@ -26,6 +26,25 @@ async function getTutorial(id: string): Promise<TutorialModel> {
   };
 }
 
+async function getTutorialCards(): Promise<TutorialCard[]> {
+  const response = await requestSdk.getAllTutorials();
+
+  return (
+    response?.tutorials?.data.map((tutorial) => ({
+      id: tutorial.id ?? "",
+      title: tutorial.attributes?.title ?? "",
+      cover: {
+        src: process.env.NEXT_PUBLIC_CMS_BASE_URL! + (tutorial.attributes?.cover?.data?.attributes?.url ?? ""),
+        alt: tutorial.attributes?.cover?.data?.attributes?.alternativeText ?? "",
+      },
+      categories:
+        tutorial.attributes?.categories?.data.map((category) => category.attributes?.name ?? "").filter(Boolean) ?? [],
+      summary: tutorial.attributes?.summary ?? "",
+    })) ?? []
+  );
+}
+
 export const tutorialApi = {
   getTutorial,
+  getTutorialCards,
 };
