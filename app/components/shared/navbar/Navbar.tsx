@@ -1,3 +1,5 @@
+"use client";
+
 import { BookOpenIcon } from "@heroicons/react/24/solid";
 import { useHeaderMenuStore } from "../store";
 import { Backdrop } from "./backdrop/Backdrop";

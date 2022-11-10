@@ -1,3 +1,5 @@
+"use client";
+
 import { useHeaderMenuStore } from "@components/shared/store";
 
 export const Backdrop = () => {

@@ -21,11 +21,11 @@
     ],
     "rootDir": ".",
     "paths": {
-      "@app/*": ["./app/*"],
-      "@components/*": ["./components/*"],
+      "@components/*": ["./app/components/*"],
       "@hooks/*": ["./hooks/*"],
       "@utils/*": ["./utils/*"],
-      "@graphql/*": ["./graphql/*"]
+      "@graphql/*": ["./graphql/*"],
+      "@app/*": ["./app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

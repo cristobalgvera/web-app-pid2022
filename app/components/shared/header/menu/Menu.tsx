@@ -1,3 +1,5 @@
+"use client";
+
 import { useHeaderMenuStore } from "@components/shared/store";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 

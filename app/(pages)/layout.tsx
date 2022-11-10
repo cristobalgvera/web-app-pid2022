@@ -1,11 +1,9 @@
 "use client";
 
+import { ReactQueryClientProvider } from "./providers";
 import { Header, Navbar } from "@components/shared";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NextLayoutProps } from "@utils/types";
 import "./globals.css";
-
-const queryClient = new QueryClient();
 
 export default function RootLayout({ children }: NextLayoutProps) {
   return (
@@ -21,7 +19,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
           href="/favicon.ico"
         />
       </head>
-      <QueryClientProvider client={queryClient}>
+      <ReactQueryClientProvider>
         <body className="h-screen bg-brand-base">
           <header className="sticky top-0 z-50 border-b-2 border-primary-400">
             <Header />
@@ -29,7 +27,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
           <Navbar />
           <main className="relative flex flex-col gap-y-8 px-24 py-12 lg:px-16 lg:py-8">{children}</main>
         </body>
-      </QueryClientProvider>
+      </ReactQueryClientProvider>
     </html>
   );
 }

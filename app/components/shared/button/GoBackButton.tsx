@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { Button } from "./Button";
