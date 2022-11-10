@@ -7,7 +7,7 @@ interface TutorialProps {
 
 export const Tutorial = ({ tutorial }: TutorialProps) => {
   return (
-    <div className="prose">
+    <div className="prose prose-p:text-justify">
       <h1>{tutorial.title}</h1>
       <MDXRemote {...tutorial.content} />
     </div>
