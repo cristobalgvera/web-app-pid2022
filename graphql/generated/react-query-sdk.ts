@@ -1070,6 +1070,7 @@ export type TutorialCoverFragment = { __typename?: 'Tutorial', cover?: { __typen
 
 export type GetAllTutorialsQueryVariables = Exact<{
   pagination?: InputMaybe<PaginationArg>;
+  filters?: InputMaybe<TutorialFiltersInput>;
 }>;
 
 
@@ -1125,8 +1126,8 @@ export const TutorialCardFragmentDoc = `
     ${TutorialCoverFragmentDoc}
 ${TutorialCategoriesFragmentDoc}`;
 export const GetAllTutorialsDocument = `
-    query getAllTutorials($pagination: PaginationArg) {
-  tutorials(pagination: $pagination) {
+    query getAllTutorials($pagination: PaginationArg, $filters: TutorialFiltersInput) {
+  tutorials(pagination: $pagination, filters: $filters) {
     data {
       id
       attributes {
