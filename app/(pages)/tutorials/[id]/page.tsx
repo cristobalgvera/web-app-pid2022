@@ -1,9 +1,30 @@
 import { NextPageProps } from "@utils/types";
 import { tutorialApi } from "@lib/api";
-import { Tutorial } from "@components/tutorials";
+import { Tutorial, TutorialsSide } from "@components/tutorials";
 
 export default async function TutorialPage({ params }: NextPageProps<{ id: string }>) {
-  const tutorial = await tutorialApi.getTutorial(params.id);
+  const [tutorial, tutorialCards] = await Promise.all([
+    tutorialApi.getTutorial({ id: params.id }),
+    tutorialApi.getTutorialCards({
+      pagination: {
+        pageSize: 2,
+      },
+      filters: {
+        id: {
+          ne: params.id,
+        },
+      },
+    }),
+  ]);
 
-  return <Tutorial tutorial={tutorial} />;
+  return (
+    <div className="lg:grid lg:grid-cols-3 lg:gap-x-16 lg:pt-4">
+      <div className="lg:col-span-2">
+        <Tutorial tutorial={tutorial} />
+      </div>
+      <div>
+        <TutorialsSide tutorialCards={tutorialCards} />
+      </div>
+    </div>
+  );
 }
