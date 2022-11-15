@@ -35,7 +35,7 @@ async function getTutorialCards(variables?: GetAllTutorialsQueryVariables): Prom
       id: tutorial.id ?? "",
       title: tutorial.attributes?.title ?? "",
       cover: {
-        src: process.env.NEXT_PUBLIC_CMS_BASE_URL! + (tutorial.attributes?.cover?.data?.attributes?.url ?? ""),
+        src: tutorial.attributes?.cover?.data?.attributes?.url ?? "",
         alt: tutorial.attributes?.cover?.data?.attributes?.alternativeText ?? "",
       },
       categories:
