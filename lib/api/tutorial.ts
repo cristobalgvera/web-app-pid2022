@@ -45,7 +45,16 @@ async function getTutorialCards(variables?: GetAllTutorialsQueryVariables): Prom
   );
 }
 
+async function getAllTutorialIds(): Promise<{ id: string }[]> {
+  const response = await requestSdk.getAllTutorialIds();
+
+  const tutorialIds = response.tutorials?.data.map(({ id }) => String(id)).filter(Boolean) ?? [];
+
+  return tutorialIds.map((id) => ({ id }));
+}
+
 export const tutorialApi = {
   getTutorial,
   getTutorialCards,
+  getAllTutorialIds,
 };

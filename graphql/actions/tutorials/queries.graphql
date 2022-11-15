@@ -9,6 +9,14 @@ query getAllTutorials($pagination: PaginationArg, $filters: TutorialFiltersInput
   }
 }
 
+query getAllTutorialIds {
+  tutorials {
+    data {
+      id
+    }
+  }
+}
+
 query getOneTutorial($id: ID!) {
   tutorial(id: $id) {
     data {

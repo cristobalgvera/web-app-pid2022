@@ -1,6 +1,6 @@
-import { NextPageProps } from "@utils/types";
-import { tutorialApi } from "@lib/api";
 import { Tutorial, TutorialsSide } from "@components/tutorials";
+import { tutorialApi } from "@lib/api";
+import { NextPageProps } from "@utils/types";
 
 export default async function TutorialPage({ params }: NextPageProps<{ id: string }>) {
   const [tutorial, tutorialCards] = await Promise.all([
@@ -27,4 +27,8 @@ export default async function TutorialPage({ params }: NextPageProps<{ id: strin
       </div>
     </div>
   );
+}
+
+export function generateStaticParams() {
+  return tutorialApi.getAllTutorialIds();
 }
