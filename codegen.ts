@@ -15,12 +15,6 @@ const config: CodegenConfig = {
         documentMode: "documentNode",
       },
     },
-    "graphql/generated/react-query-sdk.ts": {
-      plugins: ["typescript", "typescript-operations", "typescript-react-query"],
-      config: {
-        fetcher: "graphql-request",
-      },
-    },
   },
 };
 
