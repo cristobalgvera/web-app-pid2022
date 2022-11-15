@@ -6,7 +6,7 @@ export type NextTemplateProps = NextLayoutProps;
 
 export type NextPageProps<T extends { [slug: string]: string } = {}> = {
   params: T;
-  searchParams: {
+  searchParams?: {
     [id: string]: string;
   };
 };
