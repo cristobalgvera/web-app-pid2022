@@ -2,6 +2,7 @@
 
 import { Header, Navbar } from "@components/shared";
 import { NextLayoutProps } from "@utils/types";
+import Providers from "./providers";
 import "./globals.css";
 
 export default function RootLayout({ children }: NextLayoutProps) {
@@ -19,11 +20,13 @@ export default function RootLayout({ children }: NextLayoutProps) {
         />
       </head>
       <body className="h-screen bg-brand-base">
-        <header className="sticky top-0 z-50 border-b-2 border-primary-400">
-          <Header />
-        </header>
-        <Navbar />
-        <main className="relative flex flex-col gap-y-8 px-24 py-12 lg:px-16 lg:py-8">{children}</main>
+        <Providers>
+          <header className="sticky top-0 z-50 border-b-2 border-primary-400">
+            <Header />
+          </header>
+          <Navbar />
+          <main className="relative flex flex-col gap-y-8 px-24 py-12 lg:px-16 lg:py-8">{children}</main>
+        </Providers>
       </body>
     </html>
   );
