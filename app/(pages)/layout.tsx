@@ -19,7 +19,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
           href="/favicon.ico"
         />
       </head>
-      <body className="h-screen bg-brand-base">
+      <body className="h-screen bg-brand-base text-brand-text">
         <Providers>
           <header className="sticky top-0 z-50 border-b-2 border-primary-400">
             <Header />
