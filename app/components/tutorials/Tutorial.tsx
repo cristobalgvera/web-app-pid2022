@@ -1,6 +1,6 @@
 import { MDXRemote } from "@app/client-wrappers";
 import { Title } from "@components/shared";
-import { TutorialModel } from "../model";
+import { TutorialModel } from "./model";
 
 interface TutorialProps {
   tutorial: TutorialModel;

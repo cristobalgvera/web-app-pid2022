@@ -1,8 +1,8 @@
-import { TutorialsGrid } from "@components/tutorials";
+import { TutorialGrid } from "./TutorialGrid";
 import { tutorialApi } from "@lib/api";
 
 export default async function TutorialsPage() {
   const tutorialCards = await tutorialApi.getTutorialCards();
 
-  return <TutorialsGrid tutorialCards={tutorialCards} />;
+  return <TutorialGrid tutorialCards={tutorialCards} />;
 }

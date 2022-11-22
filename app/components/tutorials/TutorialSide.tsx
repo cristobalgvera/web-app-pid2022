@@ -1,11 +1,11 @@
 import { Card } from "@components/shared";
-import { TutorialCard } from "../model";
+import { TutorialCardDto } from "./model";
 
-interface TutorialsSideProps {
-  tutorialCards: TutorialCard[];
+interface TutorialSideProps {
+  tutorialCards: TutorialCardDto[];
 }
 
-export const TutorialsSide = ({ tutorialCards }: TutorialsSideProps) => {
+export const TutorialSide = ({ tutorialCards }: TutorialSideProps) => {
   return (
     <aside>
       <h2 className="mb-6 text-lg font-semibold">Revisa otros tutoriales</h2>

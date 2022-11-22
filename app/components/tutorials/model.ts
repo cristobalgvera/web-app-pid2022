@@ -12,4 +12,4 @@ export interface TutorialModel {
   categories: string[];
 }
 
-export interface TutorialCard extends Omit<TutorialModel, "content"> {}
+export interface TutorialCardDto extends Omit<TutorialModel, "content"> {}

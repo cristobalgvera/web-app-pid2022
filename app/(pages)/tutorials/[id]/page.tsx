@@ -1,4 +1,4 @@
-import { Tutorial, TutorialsSide } from "@components/tutorials";
+import { Tutorial, TutorialSide } from "@components/tutorials";
 import { tutorialApi } from "@lib/api";
 import { NextPageProps } from "@utils/types";
 
@@ -23,7 +23,7 @@ export default async function TutorialPage({ params }: NextPageProps<{ id: strin
         <Tutorial tutorial={tutorial} />
       </div>
       <div>
-        <TutorialsSide tutorialCards={tutorialCards} />
+        <TutorialSide tutorialCards={tutorialCards} />
       </div>
     </div>
   );
