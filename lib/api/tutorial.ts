@@ -7,23 +7,26 @@ import { notFound } from "next/navigation";
 async function getTutorial(variables: GetOneTutorialQueryVariables): Promise<TutorialModel> {
   const response = await requestSdk.getOneTutorial(variables);
 
-  if (!response.tutorial?.data?.id) notFound();
+  const data = response.tutorial?.data;
 
-  const html = await serialize(response.tutorial.data.attributes?.content ?? "");
+  if (!data || !data.id) notFound();
+
+  const { title, cover, categories, summary, content } = data.attributes ?? {};
+
+  const html = await serialize(content ?? "");
 
   return {
-    id: response.tutorial.data.id ?? "",
-    title: response.tutorial.data.attributes?.title ?? "",
-    categories:
-      response.tutorial.data.attributes?.categories?.data
-        .map((category) => category.attributes?.name ?? "")
-        .filter(Boolean) ?? [],
+    id: data.id,
+    title: title ?? "",
+    categories: categories?.data.map((category) => category.attributes?.name ?? "").filter(Boolean) ?? [],
     content: html,
-    summary: response.tutorial.data.attributes?.summary ?? "",
-    cover: {
-      src: response.tutorial.data.attributes?.cover?.data?.attributes?.url ?? "",
-      alt: response.tutorial.data.attributes?.cover?.data?.attributes?.alternativeText ?? "",
-    },
+    summary: summary ?? undefined,
+    cover: cover?.data?.attributes?.url
+      ? {
+          src: cover.data.attributes.url,
+          alt: cover.data.attributes.alternativeText ?? "",
+        }
+      : undefined,
   };
 }
 
@@ -31,17 +34,22 @@ async function getTutorialCards(variables?: GetAllTutorialsQueryVariables): Prom
   const response = await requestSdk.getAllTutorials(variables);
 
   return (
-    response?.tutorials?.data.map((tutorial) => ({
-      id: tutorial.id ?? "",
-      title: tutorial.attributes?.title ?? "",
-      cover: {
-        src: tutorial.attributes?.cover?.data?.attributes?.url ?? "",
-        alt: tutorial.attributes?.cover?.data?.attributes?.alternativeText ?? "",
-      },
-      categories:
-        tutorial.attributes?.categories?.data.map((category) => category.attributes?.name ?? "").filter(Boolean) ?? [],
-      summary: tutorial.attributes?.summary ?? "",
-    })) ?? []
+    response?.tutorials?.data.map((tutorial) => {
+      const { title, cover, summary, categories } = tutorial.attributes ?? {};
+
+      return {
+        id: tutorial.id ?? "",
+        title: title ?? "",
+        cover: cover?.data?.attributes?.url
+          ? {
+              src: cover.data.attributes.url,
+              alt: cover.data.attributes.alternativeText ?? "",
+            }
+          : undefined,
+        categories: categories?.data.map((category) => category.attributes?.name ?? "").filter(Boolean) ?? [],
+        summary: summary ?? undefined,
+      };
+    }) ?? []
   );
 }
 
