@@ -7,7 +7,7 @@ interface TutorialCardsProps {
 
 export const TutorialCards = ({ tutorialCards }: TutorialCardsProps) => {
   return (
-    <div className="grid grid-cols-2 place-items-center gap-y-8 md:gap-x-4 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-3 lg:gap-x-6">
       {tutorialCards.map(({ id, title, cover, summary, categories }) => (
         <Card
           key={id}
