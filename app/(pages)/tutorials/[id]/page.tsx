@@ -2,6 +2,8 @@ import { Tutorial, TutorialSide } from "@components/tutorials";
 import { tutorialApi } from "@lib/api";
 import { NextPageProps } from "@utils/types";
 
+export const revalidate = 60;
+
 export function generateStaticParams() {
   return tutorialApi.getAllTutorialIds();
 }
