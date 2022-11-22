@@ -1,5 +1,5 @@
 import { MDXRemote } from "@app/client-wrappers";
-import { Title } from "@components/shared";
+import { Article, Title } from "@components/shared";
 import { TutorialModel } from "./model";
 
 interface TutorialProps {
@@ -8,9 +8,9 @@ interface TutorialProps {
 
 export const Tutorial = ({ tutorial }: TutorialProps) => {
   return (
-    <article className="prose-lg max-w-full prose-p:text-justify prose-img:mx-auto">
+    <Article>
       <Title>{tutorial.title}</Title>
       <MDXRemote {...tutorial.content} />
-    </article>
+    </Article>
   );
 };
