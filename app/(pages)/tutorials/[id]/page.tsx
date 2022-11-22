@@ -2,6 +2,10 @@ import { Tutorial, TutorialSide } from "@components/tutorials";
 import { tutorialApi } from "@lib/api";
 import { NextPageProps } from "@utils/types";
 
+export function generateStaticParams() {
+  return tutorialApi.getAllTutorialIds();
+}
+
 export default async function TutorialPage({ params }: NextPageProps<{ id: string }>) {
   const [tutorial, tutorialCards] = await Promise.all([
     tutorialApi.getTutorial({ id: params.id }),
@@ -27,8 +31,4 @@ export default async function TutorialPage({ params }: NextPageProps<{ id: strin
       </div>
     </div>
   );
-}
-
-export function generateStaticParams() {
-  return tutorialApi.getAllTutorialIds();
 }
