@@ -1,4 +1,3 @@
-import { MDXRemote } from "@app/client-wrappers";
 import { Article, Title } from "@components/shared";
 import { TutorialModel } from "./model";
 
@@ -10,7 +9,7 @@ export const Tutorial = ({ tutorial }: TutorialProps) => {
   return (
     <Article>
       <Title>{tutorial.title}</Title>
-      <MDXRemote {...tutorial.content} />
+      {tutorial.content}
     </Article>
   );
 };

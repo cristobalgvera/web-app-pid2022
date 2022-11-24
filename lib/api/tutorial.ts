@@ -1,7 +1,7 @@
 import { TutorialCardDto, TutorialModel } from "@components/tutorials";
 import { GetAllTutorialsQueryVariables, GetOneTutorialQueryVariables } from "@graphql/generated/graphql";
 import { requestSdk } from "@graphql/util";
-import { serialize } from "next-mdx-remote/serialize";
+import { parseHtml } from "@utils/content";
 import { notFound } from "next/navigation";
 
 async function getTutorial(variables: GetOneTutorialQueryVariables): Promise<TutorialModel> {
@@ -13,7 +13,7 @@ async function getTutorial(variables: GetOneTutorialQueryVariables): Promise<Tut
 
   const { title, cover, categories, summary, content } = data.attributes ?? {};
 
-  const html = await serialize(content ?? "");
+  const html = parseHtml(content);
 
   return {
     id: data.id,

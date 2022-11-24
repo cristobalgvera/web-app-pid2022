@@ -1,9 +1,10 @@
+import { HtmlContent } from "@utils/types";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface TutorialModel {
   id: string;
   title: string;
-  content: MDXRemoteSerializeResult;
+  content: HtmlContent;
   summary?: string;
   cover?: {
     src: string;
