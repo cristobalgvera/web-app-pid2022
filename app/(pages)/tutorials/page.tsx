@@ -1,10 +1,10 @@
-import { TutorialGrid } from "./TutorialGrid";
-import { tutorialApi } from "@lib/api";
+import { chapterApi } from "@lib/api";
+import { Tutorials } from "./Tutorials";
 
 export const revalidate = 60;
 
 export default async function TutorialsPage() {
-  const tutorialCards = await tutorialApi.getTutorialCards();
+  const tutorialIndexes = await chapterApi.getTutorialIndexes();
 
-  return <TutorialGrid tutorialCards={tutorialCards} />;
+  return <Tutorials indexes={tutorialIndexes} />;
 }
