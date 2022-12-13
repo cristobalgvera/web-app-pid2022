@@ -12,7 +12,7 @@ export const ChapterIndex = ({ chapterIndexes }: ChapterIndexProps) => {
   const router = useRouter();
 
   return (
-    <ol className="space-y-10 text-lg leading-8">
+    <ol className="space-y-6 text-lg leading-8">
       {chapterIndexes.map((chapter) => (
         <li key={chapter.id}>
           <h2

@@ -6,7 +6,7 @@ interface TutorialIndexProps {
 
 export const TutorialIndex = ({ chapterIndexes }: TutorialIndexProps) => {
   return (
-    <div className="relative mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:max-w-4xl lg:px-12">
+    <div className="relative mt-4 px-4 sm:mx-auto sm:px-6 md:mt-8 md:max-w-2xl md:px-4 lg:max-w-4xl lg:px-12">
       <ChapterIndex chapterIndexes={chapterIndexes} />
     </div>
   );

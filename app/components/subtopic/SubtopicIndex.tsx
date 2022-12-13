@@ -6,7 +6,7 @@ interface SubtopicIndexProps {
 
 export const SubtopicIndex = ({ topicIndex }: SubtopicIndexProps) => {
   return (
-    <ol className="mt-4 ml-8 space-y-2">
+    <ol className="mt-2 ml-8 space-y-2">
       {topicIndex.subtopics.map((subtopic) => (
         <li key={subtopic.id}>
           <span className="block rounded-lg px-2 hover:cursor-pointer hover:bg-gray-200">{subtopic.title}</span>
