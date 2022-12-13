@@ -15,7 +15,7 @@ interface CardProps {
     src: string;
     alt: string;
   };
-  tags: string[];
+  tags?: string[];
 }
 
 export const Card = ({ redirectTo, title, description, cover, tags }: CardProps) => {
@@ -31,7 +31,7 @@ export const Card = ({ redirectTo, title, description, cover, tags }: CardProps)
           />
           <CardTags
             title={title}
-            tags={tags}
+            tags={tags ?? []}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ interface ArticleProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HT
 export const Article = ({ children, className, ...props }: ArticleProps) => {
   return (
     <article
-      className={`prose-lg max-w-full prose-p:text-justify prose-img:mx-auto ${className}`}
+      className={`prose max-w-full prose-p:text-justify prose-img:mx-auto md:prose-lg ${className}`}
       {...props}
     >
       {children}
