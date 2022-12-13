@@ -1,7 +1,4 @@
-import { ArrowRightIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import Link from "next/link";
-import { Tag } from "../tag/Tag";
 import { CardDescription } from "./CardDescription";
 import { CardImage } from "./CardImage";
 import { CardReadMoreButton } from "./CardReadMoreButton";
