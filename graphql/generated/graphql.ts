@@ -1345,13 +1345,6 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SubtopicIndexFragment = { __typename?: 'Topic', subtopics?: { __typename?: 'SubtopicRelationResponseCollection', data: Array<{ __typename?: 'SubtopicEntity', id?: string | null, attributes?: { __typename?: 'Subtopic', title: string } | null }> } | null } & { ' $fragmentName'?: 'SubtopicIndexFragment' };
-
-export type TopicIndexFragment = { __typename?: 'Chapter', topics?: { __typename?: 'TopicRelationResponseCollection', data: Array<{ __typename?: 'TopicEntity', id?: string | null, attributes?: (
-        { __typename?: 'Topic', title: string }
-        & { ' $fragmentRefs'?: { 'SubtopicIndexFragment': SubtopicIndexFragment } }
-      ) | null }> } | null } & { ' $fragmentName'?: 'TopicIndexFragment' };
-
 export type ChapterIndexFragment = { __typename?: 'ChapterEntity', id?: string | null, attributes?: (
     { __typename?: 'Chapter', title: string }
     & { ' $fragmentRefs'?: { 'TopicIndexFragment': TopicIndexFragment } }
@@ -1364,6 +1357,13 @@ export type GetTutorialIndexesQuery = { __typename?: 'Query', chapters?: { __typ
       { __typename?: 'ChapterEntity' }
       & { ' $fragmentRefs'?: { 'ChapterIndexFragment': ChapterIndexFragment } }
     )> } | null };
+
+export type SubtopicIndexFragment = { __typename?: 'Topic', subtopics?: { __typename?: 'SubtopicRelationResponseCollection', data: Array<{ __typename?: 'SubtopicEntity', id?: string | null, attributes?: { __typename?: 'Subtopic', title: string } | null }> } | null } & { ' $fragmentName'?: 'SubtopicIndexFragment' };
+
+export type TopicIndexFragment = { __typename?: 'Chapter', topics?: { __typename?: 'TopicRelationResponseCollection', data: Array<{ __typename?: 'TopicEntity', id?: string | null, attributes?: (
+        { __typename?: 'Topic', title: string }
+        & { ' $fragmentRefs'?: { 'SubtopicIndexFragment': SubtopicIndexFragment } }
+      ) | null }> } | null } & { ' $fragmentName'?: 'TopicIndexFragment' };
 
 export type TutorialFullFragment = (
   { __typename?: 'Tutorial', title: string, content: string, summary?: string | null }

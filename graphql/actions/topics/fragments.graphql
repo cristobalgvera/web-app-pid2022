@@ -1,0 +1,11 @@
+fragment TopicIndex on Chapter {
+  topics {
+    data {
+      id
+      attributes {
+        title
+        ...SubtopicIndex
+      }
+    }
+  }
+}

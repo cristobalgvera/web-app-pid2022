@@ -1,0 +1,10 @@
+fragment SubtopicIndex on Topic {
+  subtopics {
+    data {
+      id
+      attributes {
+        title
+      }
+    }
+  }
+}
