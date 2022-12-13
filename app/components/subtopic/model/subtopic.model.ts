@@ -1,7 +1,7 @@
 import { TopicModel } from "@components/topics";
 import { HtmlContent } from "@utils/types";
 
-export interface SubtopicModel {
+interface Subtopic {
   id: string;
   title: string;
   content: HtmlContent;
@@ -12,3 +12,5 @@ export interface SubtopicModel {
   };
   topic: TopicModel;
 }
+
+export interface SubtopicModel extends Readonly<Subtopic> {}

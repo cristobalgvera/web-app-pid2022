@@ -1,7 +1,7 @@
 import { TopicModel } from "@components/topics";
 import { HtmlContent } from "@utils/types";
 
-export interface ChapterModel {
+interface Chapter {
   id: string;
   title: string;
   content: HtmlContent;
@@ -12,3 +12,5 @@ export interface ChapterModel {
   };
   topics: TopicModel[];
 }
+
+export interface ChapterModel extends Readonly<Chapter> {}
