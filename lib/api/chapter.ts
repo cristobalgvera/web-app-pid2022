@@ -1,8 +1,8 @@
 import { ChapterIndexModel } from "@components/chapters";
 import { requestSdk } from "@graphql/util";
 
-async function getTutorialsIndex(): Promise<ChapterIndexModel[]> {
-  const response = await requestSdk.getTutorialsIndex();
+async function getTutorialIndexes(): Promise<ChapterIndexModel[]> {
+  const response = await requestSdk.getTutorialIndexes();
 
   const chapters = response.chapters?.data ?? [];
 
@@ -23,5 +23,5 @@ async function getTutorialsIndex(): Promise<ChapterIndexModel[]> {
 }
 
 export const chapterApi = {
-  getTutorialsIndex,
+  getTutorialIndexes,
 };

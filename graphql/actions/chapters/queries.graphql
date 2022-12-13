@@ -1,4 +1,4 @@
-query getTutorialsIndex {
+query getTutorialIndexes {
   chapters {
     data {
       ...ChapterIndex
