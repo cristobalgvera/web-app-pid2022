@@ -1,7 +1,31 @@
+fragment ChapterEntry on Chapter {
+  title
+  content
+  topics {
+    data {
+      id
+      attributes {
+        ...TopicCard
+      }
+    }
+  }
+}
+
 fragment ChapterIndex on ChapterEntity {
   id
   attributes {
     title
     ...TopicIndex
+  }
+}
+
+fragment ChapterCover on Chapter {
+  cover {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
   }
 }

@@ -5,3 +5,14 @@ query getTutorialIndexes {
     }
   }
 }
+
+query getChapterById($id: ID!) {
+  chapter(id: $id) {
+    data {
+      id
+      attributes {
+        ...ChapterEntry
+      }
+    }
+  }
+}

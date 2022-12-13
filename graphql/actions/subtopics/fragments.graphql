@@ -1,3 +1,8 @@
+fragment SubtopicEntry on Subtopic {
+  title
+  content
+}
+
 fragment SubtopicIndex on Topic {
   subtopics {
     data {
@@ -7,4 +12,9 @@ fragment SubtopicIndex on Topic {
       }
     }
   }
+}
+
+fragment SubtopicEntry on Subtopic {
+  title
+  content
 }

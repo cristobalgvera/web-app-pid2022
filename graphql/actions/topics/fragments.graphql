@@ -1,3 +1,16 @@
+fragment TopicEntry on Topic {
+  title
+  content
+  subtopics {
+    data {
+      id
+      attributes {
+        ...SubtopicEntry
+      }
+    }
+  }
+}
+
 fragment TopicIndex on Chapter {
   topics {
     data {
@@ -5,6 +18,19 @@ fragment TopicIndex on Chapter {
       attributes {
         title
         ...SubtopicIndex
+      }
+    }
+  }
+}
+
+fragment TopicCard on Topic {
+  title
+  summary
+  cover {
+    data {
+      attributes {
+        url
+        alternativeText
       }
     }
   }
