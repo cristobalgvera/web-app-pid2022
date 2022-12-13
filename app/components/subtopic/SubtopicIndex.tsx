@@ -9,7 +9,7 @@ export const SubtopicIndex = ({ topicIndex }: SubtopicIndexProps) => {
     <ol className="mt-4 ml-8 space-y-2">
       {topicIndex.subtopics.map((subtopic) => (
         <li key={subtopic.id}>
-          <span>{subtopic.title}</span>
+          <span className="block rounded-lg px-2 hover:cursor-pointer hover:bg-gray-200">{subtopic.title}</span>
         </li>
       ))}
     </ol>
