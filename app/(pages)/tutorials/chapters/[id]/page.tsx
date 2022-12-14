@@ -4,7 +4,7 @@ import { NextPageProps } from "@utils/types";
 
 export const revalidate = 60;
 
-export default async function TutorialsPage({ params: { id } }: NextPageProps<{ id: string }>) {
+export default async function ChapterPage({ params: { id } }: NextPageProps<{ id: string }>) {
   const chapterEntry = await chapterApi.getChapterById({ id });
 
   return <Chapter chapterEntry={chapterEntry} />;
