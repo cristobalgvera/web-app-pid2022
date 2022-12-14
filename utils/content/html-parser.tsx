@@ -10,7 +10,7 @@ export function parseHtml(plainHtml: string | undefined): HtmlContent {
       allowedTags: sanitize.defaults.allowedTags.concat(["img"]),
       allowedAttributes: {
         figure: ["style"],
-        img: ["src", "srcset", "sizes", "alt", "title", "width", "height"],
+        img: ["src", "srcset", "sizes", "alt", "title", "width", "height", "style"],
       },
     });
     return htmlReactParse(cleanHtml, { trim: true });
