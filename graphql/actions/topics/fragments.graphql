@@ -5,7 +5,7 @@ fragment TopicEntry on Topic {
     data {
       id
       attributes {
-        ...SubtopicEntry
+        ...SubtopicCard
       }
     }
   }

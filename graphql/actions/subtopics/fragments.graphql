@@ -14,7 +14,15 @@ fragment SubtopicIndex on Topic {
   }
 }
 
-fragment SubtopicEntry on Subtopic {
+fragment SubtopicCard on Subtopic {
   title
-  content
+  summary
+  cover {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
 }

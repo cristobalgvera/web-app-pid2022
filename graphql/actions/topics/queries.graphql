@@ -1,0 +1,10 @@
+query getTopicById($id: ID!) {
+  topic(id: $id) {
+    data {
+      id
+      attributes {
+        ...TopicEntry
+      }
+    }
+  }
+}
