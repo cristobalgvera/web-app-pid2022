@@ -1,0 +1,10 @@
+query getSubtopicById($id: ID!) {
+  subtopic(id: $id) {
+    data {
+      id
+      attributes {
+        ...SubtopicEntry
+      }
+    }
+  }
+}
