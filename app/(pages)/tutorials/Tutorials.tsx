@@ -1,9 +1,8 @@
 "use client";
 
 import { useQuery } from "@app/client-wrappers";
-import { ChapterIndexModel } from "@components/chapters";
+import { ChapterIndex, ChapterIndexModel } from "@components/chapters";
 import { Title } from "@components/shared";
-import { TutorialIndex } from "@components/tutorials";
 import { chapterApi } from "@lib/api";
 
 interface TutorialsProps {
@@ -20,7 +19,9 @@ export const Tutorials = ({ indexes }: TutorialsProps) => {
   return (
     <>
       <Title>Índice de Tutoriales</Title>
-      <TutorialIndex chapterIndexes={data} />
+      <div className="relative mt-4 px-4 sm:mx-auto sm:px-6 md:mt-8 md:max-w-2xl md:px-4 lg:max-w-4xl lg:px-12">
+        <ChapterIndex chapterIndexes={data} />
+      </div>
     </>
   );
 };
