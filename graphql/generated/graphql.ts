@@ -44,63 +44,6 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type Category = {
-  __typename?: 'Category';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  name: Scalars['String'];
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  tutorials?: Maybe<TutorialRelationResponseCollection>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type CategoryTutorialsArgs = {
-  filters?: InputMaybe<TutorialFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type CategoryEntity = {
-  __typename?: 'CategoryEntity';
-  attributes?: Maybe<Category>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type CategoryEntityResponse = {
-  __typename?: 'CategoryEntityResponse';
-  data?: Maybe<CategoryEntity>;
-};
-
-export type CategoryEntityResponseCollection = {
-  __typename?: 'CategoryEntityResponseCollection';
-  data: Array<CategoryEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type CategoryFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<CategoryFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  tutorials?: InputMaybe<TutorialFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type CategoryInput = {
-  name?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  tutorials?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-};
-
-export type CategoryRelationResponseCollection = {
-  __typename?: 'CategoryRelationResponseCollection';
-  data: Array<CategoryEntity>;
-};
-
 export type Chapter = {
   __typename?: 'Chapter';
   content: Scalars['String'];
@@ -215,7 +158,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Category | Chapter | I18NLocale | Subtopic | Topic | Tutorial | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Chapter | I18NLocale | Subtopic | Topic | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -329,22 +272,18 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createCategory?: Maybe<CategoryEntityResponse>;
   createChapter?: Maybe<ChapterEntityResponse>;
   createSubtopic?: Maybe<SubtopicEntityResponse>;
   createTopic?: Maybe<TopicEntityResponse>;
-  createTutorial?: Maybe<TutorialEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteChapter?: Maybe<ChapterEntityResponse>;
   deleteSubtopic?: Maybe<SubtopicEntityResponse>;
   deleteTopic?: Maybe<TopicEntityResponse>;
-  deleteTutorial?: Maybe<TutorialEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -362,12 +301,10 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateCategory?: Maybe<CategoryEntityResponse>;
   updateChapter?: Maybe<ChapterEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateSubtopic?: Maybe<SubtopicEntityResponse>;
   updateTopic?: Maybe<TopicEntityResponse>;
-  updateTutorial?: Maybe<TutorialEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -385,11 +322,6 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreateCategoryArgs = {
-  data: CategoryInput;
-};
-
-
 export type MutationCreateChapterArgs = {
   data: ChapterInput;
 };
@@ -402,11 +334,6 @@ export type MutationCreateSubtopicArgs = {
 
 export type MutationCreateTopicArgs = {
   data: TopicInput;
-};
-
-
-export type MutationCreateTutorialArgs = {
-  data: TutorialInput;
 };
 
 
@@ -430,11 +357,6 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationDeleteCategoryArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type MutationDeleteChapterArgs = {
   id: Scalars['ID'];
 };
@@ -446,11 +368,6 @@ export type MutationDeleteSubtopicArgs = {
 
 
 export type MutationDeleteTopicArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteTutorialArgs = {
   id: Scalars['ID'];
 };
 
@@ -515,12 +432,6 @@ export type MutationResetPasswordArgs = {
 };
 
 
-export type MutationUpdateCategoryArgs = {
-  data: CategoryInput;
-  id: Scalars['ID'];
-};
-
-
 export type MutationUpdateChapterArgs = {
   data: ChapterInput;
   id: Scalars['ID'];
@@ -541,12 +452,6 @@ export type MutationUpdateSubtopicArgs = {
 
 export type MutationUpdateTopicArgs = {
   data: TopicInput;
-  id: Scalars['ID'];
-};
-
-
-export type MutationUpdateTutorialArgs = {
-  data: TutorialInput;
   id: Scalars['ID'];
 };
 
@@ -605,8 +510,6 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
-  categories?: Maybe<CategoryEntityResponseCollection>;
-  category?: Maybe<CategoryEntityResponse>;
   chapter?: Maybe<ChapterEntityResponse>;
   chapters?: Maybe<ChapterEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
@@ -616,8 +519,6 @@ export type Query = {
   subtopics?: Maybe<SubtopicEntityResponseCollection>;
   topic?: Maybe<TopicEntityResponse>;
   topics?: Maybe<TopicEntityResponseCollection>;
-  tutorial?: Maybe<TutorialEntityResponse>;
-  tutorials?: Maybe<TutorialEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -626,19 +527,6 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
-};
-
-
-export type QueryCategoriesArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryCategoryArgs = {
-  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -687,19 +575,6 @@ export type QueryTopicArgs = {
 
 export type QueryTopicsArgs = {
   filters?: InputMaybe<TopicFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryTutorialArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryTutorialsArgs = {
-  filters?: InputMaybe<TutorialFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -905,71 +780,6 @@ export type TopicInput = {
 export type TopicRelationResponseCollection = {
   __typename?: 'TopicRelationResponseCollection';
   data: Array<TopicEntity>;
-};
-
-export type Tutorial = {
-  __typename?: 'Tutorial';
-  categories?: Maybe<CategoryRelationResponseCollection>;
-  content: Scalars['String'];
-  cover?: Maybe<UploadFileEntityResponse>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  summary?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type TutorialCategoriesArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type TutorialEntity = {
-  __typename?: 'TutorialEntity';
-  attributes?: Maybe<Tutorial>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type TutorialEntityResponse = {
-  __typename?: 'TutorialEntityResponse';
-  data?: Maybe<TutorialEntity>;
-};
-
-export type TutorialEntityResponseCollection = {
-  __typename?: 'TutorialEntityResponseCollection';
-  data: Array<TutorialEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type TutorialFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<TutorialFiltersInput>>>;
-  categories?: InputMaybe<CategoryFiltersInput>;
-  content?: InputMaybe<StringFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<TutorialFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<TutorialFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  summary?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type TutorialInput = {
-  categories?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  content?: InputMaybe<Scalars['String']>;
-  cover?: InputMaybe<Scalars['ID']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  summary?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type TutorialRelationResponseCollection = {
-  __typename?: 'TutorialRelationResponseCollection';
-  data: Array<TutorialEntity>;
 };
 
 export type UploadFile = {
@@ -1413,46 +1223,6 @@ export type GetTopicByIdQuery = { __typename?: 'Query', topic?: { __typename?: '
         & { ' $fragmentRefs'?: { 'TopicEntryFragment': TopicEntryFragment } }
       ) | null } | null } | null };
 
-export type TutorialFullFragment = (
-  { __typename?: 'Tutorial', title: string, content: string, summary?: string | null }
-  & { ' $fragmentRefs'?: { 'TutorialCoverFragment': TutorialCoverFragment;'TutorialCategoriesFragment': TutorialCategoriesFragment } }
-) & { ' $fragmentName'?: 'TutorialFullFragment' };
-
-export type TutorialCardFragment = (
-  { __typename?: 'Tutorial', title: string, summary?: string | null }
-  & { ' $fragmentRefs'?: { 'TutorialCoverFragment': TutorialCoverFragment;'TutorialCategoriesFragment': TutorialCategoriesFragment } }
-) & { ' $fragmentName'?: 'TutorialCardFragment' };
-
-export type TutorialCategoriesFragment = { __typename?: 'Tutorial', categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null }> } | null } & { ' $fragmentName'?: 'TutorialCategoriesFragment' };
-
-export type TutorialCoverFragment = { __typename?: 'Tutorial', cover?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } & { ' $fragmentName'?: 'TutorialCoverFragment' };
-
-export type GetAllTutorialsQueryVariables = Exact<{
-  pagination?: InputMaybe<PaginationArg>;
-  filters?: InputMaybe<TutorialFiltersInput>;
-}>;
-
-
-export type GetAllTutorialsQuery = { __typename?: 'Query', tutorials?: { __typename?: 'TutorialEntityResponseCollection', data: Array<{ __typename?: 'TutorialEntity', id?: string | null, attributes?: (
-        { __typename?: 'Tutorial' }
-        & { ' $fragmentRefs'?: { 'TutorialCardFragment': TutorialCardFragment } }
-      ) | null }> } | null };
-
-export type GetAllTutorialIdsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllTutorialIdsQuery = { __typename?: 'Query', tutorials?: { __typename?: 'TutorialEntityResponseCollection', data: Array<{ __typename?: 'TutorialEntity', id?: string | null }> } | null };
-
-export type GetOneTutorialQueryVariables = Exact<{
-  id: Scalars['ID'];
-}>;
-
-
-export type GetOneTutorialQuery = { __typename?: 'Query', tutorial?: { __typename?: 'TutorialEntityResponse', data?: { __typename?: 'TutorialEntity', id?: string | null, attributes?: (
-        { __typename?: 'Tutorial' }
-        & { ' $fragmentRefs'?: { 'TutorialFullFragment': TutorialFullFragment } }
-      ) | null } | null } | null };
-
 export const TopicCardFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TopicCard"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Topic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TopicCardFragment, unknown>;
 export const ChapterEntryFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ChapterEntry"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Chapter"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"topics"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TopicCard"}}]}}]}}]}}]}},...TopicCardFragmentDoc.definitions]} as unknown as DocumentNode<ChapterEntryFragment, unknown>;
 export const SubtopicIndexFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SubtopicIndex"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Topic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subtopics"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SubtopicIndexFragment, unknown>;
@@ -1462,14 +1232,7 @@ export const ChapterCoverFragmentDoc = {"kind":"Document","definitions":[{"kind"
 export const SubtopicEntryFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SubtopicEntry"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Subtopic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]} as unknown as DocumentNode<SubtopicEntryFragment, unknown>;
 export const SubtopicCardFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SubtopicCard"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Subtopic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SubtopicCardFragment, unknown>;
 export const TopicEntryFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TopicEntry"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Topic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"subtopics"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SubtopicCard"}}]}}]}}]}}]}},...SubtopicCardFragmentDoc.definitions]} as unknown as DocumentNode<TopicEntryFragment, unknown>;
-export const TutorialCoverFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCover"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alternativeText"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TutorialCoverFragment, unknown>;
-export const TutorialCategoriesFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCategories"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<TutorialCategoriesFragment, unknown>;
-export const TutorialFullFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCover"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCategories"}}]}},...TutorialCoverFragmentDoc.definitions,...TutorialCategoriesFragmentDoc.definitions]} as unknown as DocumentNode<TutorialFullFragment, unknown>;
-export const TutorialCardFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TutorialCard"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tutorial"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCover"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCategories"}}]}},...TutorialCoverFragmentDoc.definitions,...TutorialCategoriesFragmentDoc.definitions]} as unknown as DocumentNode<TutorialCardFragment, unknown>;
 export const GetTutorialIndexesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTutorialIndexes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"chapters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ChapterIndex"}}]}}]}}]}},...ChapterIndexFragmentDoc.definitions]} as unknown as DocumentNode<GetTutorialIndexesQuery, GetTutorialIndexesQueryVariables>;
 export const GetChapterByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getChapterById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"chapter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ChapterEntry"}}]}}]}}]}}]}},...ChapterEntryFragmentDoc.definitions]} as unknown as DocumentNode<GetChapterByIdQuery, GetChapterByIdQueryVariables>;
 export const GetSubtopicByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSubtopicById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subtopic"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SubtopicEntry"}}]}}]}}]}}]}},...SubtopicEntryFragmentDoc.definitions]} as unknown as DocumentNode<GetSubtopicByIdQuery, GetSubtopicByIdQueryVariables>;
 export const GetTopicByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTopicById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"topic"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TopicEntry"}}]}}]}}]}}]}},...TopicEntryFragmentDoc.definitions]} as unknown as DocumentNode<GetTopicByIdQuery, GetTopicByIdQueryVariables>;
-export const GetAllTutorialsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllTutorials"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArg"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filters"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"TutorialFiltersInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorials"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pagination"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filters"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialCard"}}]}}]}}]}}]}},...TutorialCardFragmentDoc.definitions]} as unknown as DocumentNode<GetAllTutorialsQuery, GetAllTutorialsQueryVariables>;
-export const GetAllTutorialIdsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllTutorialIds"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorials"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetAllTutorialIdsQuery, GetAllTutorialIdsQueryVariables>;
-export const GetOneTutorialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getOneTutorial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorial"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TutorialFull"}}]}}]}}]}}]}},...TutorialFullFragmentDoc.definitions]} as unknown as DocumentNode<GetOneTutorialQuery, GetOneTutorialQueryVariables>;
