@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./{app,pages,components}/**/*.{js,ts,jsx,tsx}"],
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/line-clamp")],
+  plugins: [require("@tailwindcss/typography")],
   theme: {
     extend: {
       colors: {
