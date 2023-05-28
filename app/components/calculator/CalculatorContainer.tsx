@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 
 interface CalculatorContainerProps {
   children: ReactNode;
-  handleCalculation?: () => void;
-  handleReset?: () => void;
+  handleCalculation: () => void;
+  handleReset: () => void;
 }
 
 export const CalculatorContainer = ({ children, handleReset, handleCalculation }: CalculatorContainerProps) => {
