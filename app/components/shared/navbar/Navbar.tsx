@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenIcon } from "@heroicons/react/24/solid";
+import { BookOpenIcon, CalculatorIcon } from "@heroicons/react/24/solid";
 import { useHeaderMenuStore } from "../store";
 import { Backdrop } from "./backdrop/Backdrop";
 import { Drawer } from "./drawer/Drawer";
@@ -11,6 +11,11 @@ const navLinks: NavLink[] = [
     title: "Tutoriales",
     path: "/tutorials",
     Icon: BookOpenIcon,
+  },
+  {
+    title: "Calculadora",
+    path: "/calculator",
+    Icon: CalculatorIcon,
   },
 ];
 
