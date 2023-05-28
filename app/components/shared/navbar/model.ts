@@ -1,7 +1,8 @@
-import { ComponentProps } from "react";
+import { BookOpenIcon } from "@heroicons/react/24/solid";
 
 export interface NavLink {
   title: string;
   path: string;
-  Icon?: (props: ComponentProps<"svg">) => JSX.Element;
+  Icon?: typeof BookOpenIcon;
+  subLinks?: NavLink[];
 }

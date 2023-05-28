@@ -1,23 +1,9 @@
 "use client";
 
-import { BookOpenIcon, CalculatorIcon } from "@heroicons/react/24/solid";
 import { useHeaderMenuStore } from "../store";
 import { Backdrop } from "./backdrop/Backdrop";
 import { Drawer } from "./drawer/Drawer";
-import { NavLink } from "./model";
-
-const navLinks: NavLink[] = [
-  {
-    title: "Tutoriales",
-    path: "/tutorials",
-    Icon: BookOpenIcon,
-  },
-  {
-    title: "Calculadora",
-    path: "/calculator",
-    Icon: CalculatorIcon,
-  },
-];
+import { navLinks } from "./nav-links";
 
 export const Navbar = () => {
   const isMenuOpened = useHeaderMenuStore((state) => state.isMenuOpened);

@@ -1,7 +1,5 @@
-import { ArrowUturnRightIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
 import { NavLink } from "../model";
-import { DrawerElement } from "./DrawerElement";
+import { NavLinkItem } from "./NavLinkItem";
 
 interface DrawerProps {
   navLinks: NavLink[];
@@ -12,9 +10,10 @@ export const Drawer = ({ navLinks }: DrawerProps) => {
     <div className="overflow-y-auto py-2 text-xl text-brand-text sm:text-3xl">
       <ul className="space-y-2">
         {navLinks.map((navLink) => (
-          <li key={navLink.path}>
-            <DrawerElement navLink={navLink} />
-          </li>
+          <NavLinkItem
+            key={navLink.path}
+            navLink={navLink}
+          />
         ))}
       </ul>
     </div>
