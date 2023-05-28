@@ -9,12 +9,11 @@ export const navLinks: NavLink[] = [
   },
   {
     title: "Calculadora",
-    path: "/calculator",
     Icon: CalculatorIcon,
     subLinks: [
       {
-        title: "Probabilidad",
-        path: "/calculator/probability",
+        title: "Probabilidad conjunta",
+        path: "/calculator/joint",
       },
     ],
   },

@@ -14,7 +14,7 @@ export const NavLinkItem = ({ navLink, isSubLink }: NavLinkItemProps) => {
         isSubLink={isSubLink}
       />
       {navLink.subLinks ? (
-        <ul className="space-y-2 pl-6">
+        <ul className="space-y-2 pl-2 mt-1">
           {navLink.subLinks.map((navLink) => (
             <NavLinkItem
               key={navLink.path}
