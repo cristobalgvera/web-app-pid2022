@@ -1,7 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./{app,pages,components}/**/*.{js,ts,jsx,tsx}"],
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        brand: {
+          primary: "#355691",
+          accent: "#f422c3",
+          secondary: "#678D58",
+          warning: "#E77728",
+          error: "#DC3D84",
+          "base-100": "#F5F5F5",
+          neutral: "#14151F",
+          info: "#5775E0",
+          success: "#1D7768",
+        },
+      },
+    ],
+  },
   theme: {
     extend: {
       colors: {
