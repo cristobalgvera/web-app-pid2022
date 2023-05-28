@@ -15,6 +15,10 @@ export const navLinks: NavLink[] = [
         title: "Probabilidad conjunta",
         path: "/calculator/joint",
       },
+      {
+        title: "Probabilidad condicional",
+        path: "/calculator/conditional",
+      },
     ],
   },
 ];
