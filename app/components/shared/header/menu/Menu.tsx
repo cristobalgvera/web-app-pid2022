@@ -12,7 +12,7 @@ export const Menu = () => {
       onClick={toggleNavbar}
       className="rounded-md hover:cursor-pointer hover:bg-primary-600"
     >
-      <MenuIcon className="w-28 md:w-20 xl:w-14" />
+      <MenuIcon className="w-20 md:w-24 xl:w-14" />
     </div>
   );
 };

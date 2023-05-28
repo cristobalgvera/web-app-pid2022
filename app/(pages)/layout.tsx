@@ -25,7 +25,7 @@ export default function RootLayout({ children }: NextLayoutProps) {
             <Header />
           </header>
           <Navbar />
-          <main className="relative flex flex-col gap-y-2 px-16 py-12 lg:py-8">{children}</main>
+          <main className="relative flex flex-col gap-y-2 px-8 py-12">{children}</main>
         </Providers>
       </body>
     </html>
